@@ -1,5 +1,7 @@
 
 importFrom("layoutEngine",
+           "copyAssets",
+           "fontFiles",
            "makeLayout",
            "makeEngine")
 
@@ -17,5 +19,8 @@ importFrom("xml2",
            "xml_add_child",
            "xml_children",
            "xml_find_first")
+
+importFrom("utils",
+           "read.csv")
 
 export("DOMEngine")

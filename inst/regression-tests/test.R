@@ -3,6 +3,16 @@ library(layoutEngineDOM)
 library(gyre)
 library(xtable)
 
+## Use phantomClient for testing because that is better for automation
+## (no GUIs popping up all over the place)
+## This is not a sensible way to use layoutEngineDOM in practice
+## because it offers nothing over layoutEnginePhantomJS,
+## but it is reasonable for automated testing
+## NOTE that for remote automated testing, might need
+## QT_QPA_PLATFORM="offscreen" so PhantomJS does not look for an X server
+options(DOM.client=DOM::phantomClient,
+        DOM.width=600)
+
 tests <- function() {
     grid.html("<p>test</p>")
     grid.newpage()
@@ -11,8 +21,7 @@ tests <- function() {
               y=unit(1, "npc") - unit(2, "mm"),
               just=c("right", "top"))
     grid.newpage()
-    grid.html('<p style="width: 100px; border-width: 1px">This paragraph should split a line</p>')
-    
+    grid.html('<p style="width: 100px; border-width: 1px">This paragraph should split a line</p>')    
 }
 
 pdf("tests.pdf")
