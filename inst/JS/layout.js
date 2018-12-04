@@ -66,15 +66,22 @@ function spanifyText() {
     var i, j;
     for (i = 0; i < text.length; i++) {
 	var words = split(text[i]);
-        if (!emptyText(text[i]) && words.length > 1) {
+        if (!emptyText(text[i])) {
             parent = text[i].parentNode;
-	    overallspan = document.createElement("span");
-            for (j = 0; j < words.length; j++) {
+            if (words.length > 1) {
+            	overallspan = document.createElement("span");
+                for (j = 0; j < words.length; j++) {
+                    span = document.createElement("span");
+                    span.appendChild(document.createTextNode(words[j] + " "));
+                    overallspan.appendChild(span);
+     	        }
+                parent.replaceChild(overallspan, text[i]);
+            } else { 
+                // Single word
                 span = document.createElement("span");
-                span.appendChild(document.createTextNode(words[j] + " "));
-                overallspan.appendChild(span);
-     	    }
-            parent.replaceChild(overallspan, text[i]);
+                span.appendChild(document.createTextNode(words[0]));
+                parent.replaceChild(span, text[i]);
+            }
         }
     }
 }
@@ -93,8 +100,9 @@ function writeBox(node, index, parentName) {
         line = line + bbox.top + ",";
         line = line + bbox.width + ",";
         line = line + bbox.height + ",";
-        // No text information (text, family, bold, italic, size, color)
-        line = line + "NA,NA,NA,NA,NA,NA" + ",";
+        // No text information 
+        // (baseline, text, family, bold, italic, size, color)
+        line = line + "NA,NA,NA,NA,NA,NA,NA" + ",";
         var style = window.getComputedStyle(node);
         line = line + hexColor(style["background-color"]) + ",";
         // Borders
@@ -122,12 +130,15 @@ function writeBox(node, index, parentName) {
         line = line + "TEXT,";
         line = line + textName(index, parentName) + ",";
         var parent = node.parentElement;
+        var fontBaseline = window['font-baseline'];
+        var metrics = fontBaseline(parent);
         var bbox = parent.getBoundingClientRect();
         line = line + bbox.left + ",";
         line = line + bbox.top + ",";
         line = line + bbox.width + ",";
         line = line + bbox.height + ",";
         // Text 
+        line = line + metrics.baseline + ",";
         line = line + "'" + node.nodeValue + "'" + ",";
         var style = window.getComputedStyle(parent);
         line = line + style["font-family"] + ",";

@@ -2,8 +2,11 @@ Package: layoutEngineDOM
 Type: Package
 Title: Render HTML Using DOM
 Version: 0.1-0
-Author: Paul Murrell
-Maintainer: Paul Murrell <paul@stat.auckland.ac.nz>
+Authors@R: c(person("Paul", "Murrell", 
+                    role=c("aut", "cre"),
+                    email="paul@stat.auckland.ac.nz"),
+             person("George", "Crawford",
+                    role=c("ctb", "cph")))
 Description: A "backend" package for 'layoutEngine' that is based on the
              R package 'DOM'.
 Depends: layoutEngine

@@ -2,6 +2,7 @@
 importFrom("layoutEngine",
            "copyAssets",
            "fontFiles",
+           "layoutFields",
            "makeLayout",
            "makeEngine")
 
