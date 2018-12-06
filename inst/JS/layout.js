@@ -32,7 +32,7 @@ function hexColor(rgb) {
         alpha = Number(pieces[4]).toString(16);
         if (alpha.length < 2) alpha = "0" + alpha;
     }
-    return "#" + red + blue + green + alpha;
+    return "#" + red + green + blue + alpha;
 }
 
 // Add <span/> wrapper on any text that is not ALL white space
