@@ -73,7 +73,7 @@ DOMLayout <- function(html, width, height, fonts, device) {
     names(layoutDF) <- names(layoutFields)
     ## Convert font size from CSS pixels to points
     layoutDF$size <- layoutDF$size*72/dpi
-    do.call(makeLayout, unname(layoutDF))
+    do.call(makeLayout, layoutDF)
 }
 
 DOMfontFile <- function(file) {
