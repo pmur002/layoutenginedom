@@ -13,10 +13,12 @@ library(xtable)
 options(DOM.client=DOM::phantomClient,
         DOM.width=600)
 
+xtab <- print(xtable(head(mtcars[1:3])), type="html", print=FALSE)
+
 tests <- function() {
     grid.html("<p>test</p>")
     grid.newpage()
-    grid.html(xtable(head(mtcars[1:3])), 
+    grid.html(xtab, 
               x=unit(1, "npc") - unit(2, "mm"),
               y=unit(1, "npc") - unit(2, "mm"),
               just=c("right", "top"))

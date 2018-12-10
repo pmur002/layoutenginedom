@@ -38,12 +38,12 @@ DOMLayout <- function(html, width, height, fonts, device) {
               assetDir)
     file.copy(system.file("JS", "layout.js", package="layoutEngineDOM"),
               assetDir)
-    body <- xml_find_first(html, "body")
+    body <- xml_find_first(html$doc, "body")
     xml_add_child(body, "script", src="assets/index.js")
     xml_add_child(body, "script", src="assets/layout.js")
     ## Open DOM page with <body> and <style> in <head>
     HTML <- as.character(xml_children(body))
-    style <- xml_find_first(html, "head/style")
+    style <- xml_find_all(html$doc, "head/style")
     ## Establish R http server root
     oldwd <- getwd()
     if (!is.null(oldwd))

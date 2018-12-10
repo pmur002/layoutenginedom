@@ -19,6 +19,7 @@ importFrom("DOM",
 importFrom("xml2",
            "xml_add_child",
            "xml_children",
+           "xml_find_all",
            "xml_find_first")
 
 importFrom("utils",
