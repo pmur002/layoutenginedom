@@ -43,13 +43,13 @@ DOMLayout <- function(html, width, height, fonts, device) {
     xml_add_child(body, "script", src="assets/layout.js")
     ## Open DOM page with <body> and <style> in <head>
     HTML <- as.character(xml_children(body))
-    style <- xml_find_all(html$doc, "head/style")
+    head <- xml_find_all(html$doc, "head/*")
     ## Establish R http server root
     oldwd <- getwd()
     if (!is.null(oldwd))
         on.exit(setwd(oldwd))
     setwd(wd)
-    page <- htmlPage(HTML, head=as.character(style))
+    page <- htmlPage(HTML, head=as.character(head))
     ## Add script to calculate the page layout
     appendChild(page, javascript("calculateLayout()"), css("body"))
     ## Get the layout info back
