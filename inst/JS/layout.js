@@ -62,7 +62,7 @@ function split(node) {
 
 function spanifyText() {
     var text = getTextNodes(document.body);
-    var parent, span, overallspan;
+    var parent, span, overallspan, word;
     var i, j;
     for (i = 0; i < text.length; i++) {
 	var words = split(text[i]);
@@ -72,7 +72,10 @@ function spanifyText() {
             	overallspan = document.createElement("span");
                 for (j = 0; j < words.length; j++) {
                     span = document.createElement("span");
-                    span.appendChild(document.createTextNode(words[j] + " "));
+                    word = words[j];
+                    if (j < words.length - 1)
+                        word = word + " ";
+                    span.appendChild(document.createTextNode(word));
                     overallspan.appendChild(span);
      	        }
                 parent.replaceChild(overallspan, text[i]);
