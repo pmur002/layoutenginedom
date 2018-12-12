@@ -14,7 +14,8 @@ importFrom("DOM",
            "getProperty",
            "htmlNode",
            "htmlPage",
-           "javascript")
+           "javascript",
+           "setProperty")
 
 importFrom("xml2",
            "xml_add_child",

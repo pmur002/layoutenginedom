@@ -50,6 +50,10 @@ DOMLayout <- function(html, width, height, fonts, device) {
         on.exit(setwd(oldwd))
     setwd(wd)
     page <- htmlPage(HTML, head=as.character(head))
+    ## Set the page <body> size
+    style <- getProperty(page, css("body"), "style")
+    setProperty(page, style, "width", as.character(width*dpi))
+    setProperty(page, style, "height", as.character(height*dpi))
     ## Add script to calculate the page layout
     appendChild(page, javascript("calculateLayout()"), css("body"))
     ## Get the layout info back
