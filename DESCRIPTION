@@ -1,7 +1,7 @@
 Package: layoutEngineDOM
 Type: Package
 Title: Render HTML Using DOM
-Version: 0.1-1
+Version: 0.2-0
 Authors@R: c(person("Paul", "Murrell", 
                     role=c("aut", "cre"),
                     email="paul@stat.auckland.ac.nz"),
@@ -9,7 +9,7 @@ Authors@R: c(person("Paul", "Murrell",
                     role=c("ctb", "cph")))
 Description: A "backend" package for 'layoutEngine' that is based on the
              R package 'DOM'.
-Depends: layoutEngine (>= 0.1-1)
+Depends: layoutEngine (>= 0.2-0)
 Imports: DOM (>= 0.6-0), xml2
 Suggests: gyre, xtable
 SystemRequirements: fontforge
