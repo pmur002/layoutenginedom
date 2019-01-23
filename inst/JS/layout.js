@@ -104,9 +104,11 @@ function writeBox(node, index, parentName) {
         line = line + bbox.width + ",";
         line = line + bbox.height + ",";
         // No text information 
-        // (baseline, text, family, bold, italic, size, color)
-        line = line + "NA,NA,NA,NA,NA,NA,NA" + ",";
+        // (baseline, text, family, bold, italic, size)
+        line = line + "NA,NA,NA,NA,NA,NA" + ",";
         var style = window.getComputedStyle(node);
+        line = line + hexColor(style["color"]) + ",";
+        line = line + style["direction"] + ",";
         line = line + hexColor(style["background-color"]) + ",";
         // Borders
         line = line + borderWidth(style, "border-left-width") + ",";
@@ -120,7 +122,10 @@ function writeBox(node, index, parentName) {
         line = line + hexColor(style["border-left-color"]) + ",";
         line = line + hexColor(style["border-top-color"]) + ",";
         line = line + hexColor(style["border-right-color"]) + ",";
-        line = line + hexColor(style["border-bottom-color"]);
+        line = line + hexColor(style["border-bottom-color"]) + ",";
+        // Lists
+        line = line + style["list-style-type"]  + ",";
+        line = line + style["list-style-position"];
         line = line + "\n";
         // console.log(line);
         var i;
@@ -150,12 +155,15 @@ function writeBox(node, index, parentName) {
         line = line + ((style["font-style"] != "normal")?"TRUE":"FALSE") + ",";
         line = line + style["font-size"].replace("px", "") + ",";
         line = line + hexColor(style["color"]) + ",";
+        line = line + style["direction"] + ",";
         // No background
         line = line + "NA,";
         // No border properties (width, style, color)
         line = line + "NA,NA,NA,NA,";
         line = line + "NA,NA,NA,NA,";
-        line = line + "NA,NA,NA,NA";
+        line = line + "NA,NA,NA,NA,";
+        // No list properties (type, direction)
+        line = line + "NA,NA";        
         line = line + "\n";
     } else {
         // just a comment;  do nothing

@@ -1,0 +1,9 @@
+\name{NEWS}
+\title{NEWS file for the layoutEngineDOM package}
+\encoding{UTF-8}
+
+\section{Changes in version 0.1-1}{
+  \itemize{
+    \item Add support for simple bullets for list items
+  }
+}
