@@ -104,9 +104,10 @@ function writeBox(node, index, parentName) {
         line = line + bbox.width + ",";
         line = line + bbox.height + ",";
         // No text information 
-        // (baseline, text, family, bold, italic, size)
-        line = line + "NA,NA,NA,NA,NA,NA" + ",";
+        // (baseline, text, family, bold, italic)
+        line = line + "NA,NA,NA,NA,NA" + ",";
         var style = window.getComputedStyle(node);
+        line = line + style["font-size"].replace("px", "") + ",";
         line = line + hexColor(style["color"]) + ",";
         line = line + style["direction"] + ",";
         line = line + hexColor(style["background-color"]) + ",";
